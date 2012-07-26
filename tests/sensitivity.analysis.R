@@ -17,7 +17,7 @@ tmp<-sensitivity.analysis(sa.type="GT", incid=Germany.1918, GT.type="gamma", GT.
 
 ## Results are stored in a matrix, each line dedicated to a (mean,sd) couple
 plot(x=tmp[,"GT.Mean"], xlab="mean GT (days)", y=tmp[,"R"], ylim=c(1.2, 2.1), ylab="R0 (95% CI)", 
-     type="p", pch=19, col="red", main="Sensitivity of R0 to mean GT")
+     type="p", pch=19, col="black", main="Sensitivity of R0 to mean GT")
 arrows(x0=as.numeric(tmp[,"GT.Mean"]), y0=as.numeric(tmp[,"CI[lower]"]), 
        y1=as.numeric(tmp[,"CI[upper]"]), angle=90, code=3, col="black", length=0.05)
 ## Note : One could tweak this example to change sorting of values (per mean, or per standard deviation)

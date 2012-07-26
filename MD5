@@ -1,4 +1,4 @@
-6cbba3b20252d1401b1c4578b7f33399 *DESCRIPTION
+36a5a0680255129a0e5da6a92c40f2e7 *DESCRIPTION
 643a1327af5f9d4b3539ee8ec0649c21 *NAMESPACE
 6ff9f567c9fb57982b9f55a49a9a4072 *R/R.from.r.R
 c9c58a15e6edf0018f0953fd5497451e *R/censored.deviation.R
@@ -8,7 +8,7 @@ c54e8d45ab1b544d907cd1876fd9a362 *R/check.incid.R
 9d6dd24274769893067da1acae4d8482 *R/est.R0.EG.R
 db66ea1fd02b55513dc6e5ae24ebe0e4 *R/est.R0.ML.R
 66ed377c6192c782895c424906917a91 *R/est.R0.SB.R
-6111d3d64f87ef265be177f22ebf18b9 *R/est.R0.TD.R
+d7fb25338ee0105a23c683d3fa0bac97 *R/est.R0.TD.R
 06ac81cc103bca1557f5c722129d7f2f *R/estimate.R.R
 ed462fe357492a9668bd18a1bbef7183 *R/fit.epid.R
 148d7657e13078b6d1ddefd1268a398b *R/generation.time.R
@@ -30,16 +30,16 @@ ae67693eacfd3fd6fcf04a71689c9e2f *R/plot.R0.GT.R
 dbd77d3784a1cdd13aa93ef0aa54484f *R/sim.epid.R
 c80952ab3c50c35d84fd955a5ea1b99c *R/smooth.Rt.R
 987d0e9650b7f2fcfbc4dd4c27bf3eee *R0-package.Rproj
-60ee28f5fd1f6f549af3f8fd8ba312a2 *data/GT.chld.hsld.rda
-6529a5f8092f3064bc2e5e89a37cbfa9 *data/Germany.1918.rda
-59500421dc84248acf6f25fc9558f601 *data/H1N1.serial.interval.rda
+290e9769ae37830f3b1c4468c14b1941 *data/GT.chld.hsld.rda
+a130b617c8b789a3ad903a136ec232bb *data/Germany.1918.rda
+25480fafe7bd2c6d71d1a85ed3e065dd *data/H1N1.serial.interval.rda
 79e12adf1f4eda38000bfdd2b72913b6 *demo/00Index
 83144c4a588157b5fe8d89a695cce1e0 *demo/epid.demo.R
 99ea2d1b5730656457515bce8b7558cb *man/GT.chld.hsld.Rd
 93dcbca4896f0cc99d2662d4a2830ce9 *man/Germany.1918.Rd
 2da59e06612a221cfa559ac60402cf0f *man/H1N1.serial.interval.Rd
 c2bc8457c4923954fbdd017ba1e6160d *man/R.from.r.Rd
-db218f243da3334cadfa438baf01f0a0 *man/R0-package.Rd
+14cc164ac84c30b1d68475bc9b9798a8 *man/R0-package.Rd
 e3045b84e0e2992fce412f2a8a660333 *man/censored.deviation.Rd
 71f129321d467635b8fc4ebbf3edaa2d *man/check.incid.Rd
 ddfce817f38f692e7e41a98cab88ab31 *man/est.GT.Rd
@@ -74,7 +74,7 @@ fdd76ab08873ffbf6aba4fee429b5665 *man/plotfitRSB.Rd
 cb3f5db4d9522092513b0d979253bfbb *man/print.R0.sR.Rd
 ec18ac8da3787d28c55940565abe9396 *man/sa.GT.Rd
 6fea21963dd5658ec2bac8f4dfd2681c *man/sa.time.Rd
-610803df68e74a1eda43ffd461da7288 *man/sensitivity.analysis.Rd
+38ae44ed474da00f60b11bfc6d86ec9e *man/sensitivity.analysis.Rd
 6e95817f92e8ac63ddc0eed03fff8be2 *man/sim.epid.Rd
 019b4994b94457f8f629283efab896f2 *man/smooth.Rt.Rd
 173a84a4f7832eaf70f992538b5bbe66 *tests/check.incid.R
@@ -86,6 +86,6 @@ ef971976b25853ceb7f5ed671b1b4cb6 *tests/est.R0.ML.R
 0d8dce5606ab3e99aca6272c3ddc1c64 *tests/est.R0.TD.R
 fa91422a5f7d872957bf57f02865ba25 *tests/estimate.R.R
 c0a5c62e205049d95d62974e5ffe7f9a *tests/generation.time.R
-cac09af66e837de676c4c7504f8c2d51 *tests/sensitivity.analysis.R
+ff2482a3bfb95d47a4b9d9ea7b9b6e83 *tests/sensitivity.analysis.R
 a1e0e1d1264ab4ee29ef2c7d045aa552 *tests/sim.epid.R
 b2fa670e3b7e8a06b5fb8529633d51d5 *tests/smooth.Rt.R

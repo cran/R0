@@ -178,22 +178,23 @@ est.R0.TD <- function#Estimate the time dependent reproduction number
     quant.simu[s,] = quantile(R.simu[s,], q, na.rm=TRUE)
     quant.simu.corrected[s,] = quantile(R.simu.corrected[s,], q, na.rm=TRUE)
   }
-	# changed Tmax to end
-	R = R.corrected[begin.nb:end.nb]
-	names(R) = epid$t[begin.nb:end.nb]
-	
+  
+  # changed Tmax to end
   conf.int = matrix(data=NA, nrow=end.nb, ncol=2)
   colnames(conf.int)=c("lower", "upper")
   
 	if (correct == TRUE) {
+	  R = R.corrected[begin.nb:end.nb]
     conf.int[begin.nb:end.nb,1] = quant.simu.corrected[begin.nb:end.nb,1]
 	  conf.int[begin.nb:end.nb,2] = quant.simu.corrected[begin.nb:end.nb,2]
 	}
   
   else {
+    R = R.WT[begin.nb:end.nb]
     conf.int[begin.nb:end.nb,1] = quant.simu[begin.nb:end.nb,1]
     conf.int[begin.nb:end.nb,2] = quant.simu[begin.nb:end.nb,2]
 	}
+  names(R) = epid$t[begin.nb:end.nb]
 	
 	conf.int<-data.frame(na.omit(conf.int))
   	rownames(conf.int) = as.character(epid$t[begin.nb:end.nb])
