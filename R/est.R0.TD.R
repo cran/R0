@@ -89,19 +89,23 @@ est.R0.TD <- function#Estimate the time dependent reproduction number
 	}
   
 	#Matrix to store probabilities
-	#P[i,j] is proba that a case i infected case j
+  #P[i,j] the mean number of offspring at time j caused by infected at time i
+  #p[i,j] is proba that a case i infected case j
 	P <- matrix(0,ncol=Tmax,nrow=Tmax)
-	
-  if (epid$incid[1]-n.t0 > 0) {
-		# non index cases allocated to one of other cases at day t0, including other non index
-		P[1,1]<-(epid$incid[1]-n.t0)/(epid$incid[1]-1)
-	}
+	p <- matrix(0,ncol=Tmax,nrow=Tmax)
+  
   
   #At the same time, multiple simulation to estimate quantiles for R(t) values.
   #At each time unit 's', we count how many offspring come from each of [1:s] time unit 
   multinom.simu = vector("list", Tmax)
   multinom.simu[[1]] = matrix(0, Tmax, nsim)
-  p = matrix(0, Tmax, Tmax)
+  
+  if (epid$incid[1]-n.t0 > 0) {
+		# non index cases allocated to one of other cases at day t0, including other non index
+		P[1,1]<-(epid$incid[1]-n.t0)/(epid$incid[1]-1)
+    p[1,1]<-1
+		multinom.simu[[1]][1,] = rmultinom(nsim, epid$incid[1]-n.t0, p[1:1,1])
+	}
   epid.orig<-epid
   
   # 
@@ -159,7 +163,7 @@ est.R0.TD <- function#Estimate the time dependent reproduction number
   #Simulated incidence at each time unit is the sum of all cases,
   #stored in the last element of multinom.sim list
   total.infected.by.time.unit.simu = multinom.simu[[length(epid$incid)]]
-  R.simu<-total.infected.by.time.unit.simu/epid$incid
+  R.simu<-total.infected.by.time.unit.simu/c(epid$incid)
   R.simu.corrected<-R.simu/(cumsum(GT.pad[1:Tmax]))[Tmax:1] # Corrected for real time
   R.simu.corrected[Tmax,] <- 0
   
