@@ -19,7 +19,9 @@
 \details{For internal use. Called by est.R0.
 
 Initial prior is an unbiased uniform distribution for R, between 0 and the maximum of incid(t+1) - incid(t). 
-For each subsequent iteration, a new distribution is computed for R, using the previous output as new prior.}
+For each subsequent iteration, a new distribution is computed for R, using the previous output as new prior.
+
+CI is achieved by a cumulated sum of the R posterior distribution, and corresponds to the 2.5\% and 97.5\% thresholds}
 \value{A list with components:
 \item{R}{vector of R values.}
 \item{conf.int}{95\% confidence interval for estimates.}

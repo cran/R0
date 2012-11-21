@@ -105,6 +105,7 @@ est.R0.SB <- function#Estimate the time dependent reproduction number using a Ba
     most.likely.Rt[s] = Rt.range[which.max(proba.Rt[[s]])]
     
     #Computing Confidence Interval around most plausible value
+    ##details<< CI is achieved by a cumulated sum of the R posterior distribution, and corresponds to the 2.5% and 97.5% thresholds
     Rt.quant[s-1,1] <- epid$t[s-1]
     Rt.quant[s-1,2] <- most.likely.Rt[s]
     cumsum.proba <- cumsum(proba.Rt[[s]])

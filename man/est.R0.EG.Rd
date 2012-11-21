@@ -19,7 +19,9 @@
 \details{For internal use. Called by est.R0.
 
 method "poisson" uses Poisson regression of incidence.
-method "linear" uses linear regression of log(incidence)}
+method "linear" uses linear regression of log(incidence)
+
+CI is computed from the 1/M(-r) formula using bounds on r from the Poisson regression.}
 \value{A list with components:
 \item{R}{The estimate of the reproduction ratio.}
 \item{conf.int}{The 95\% confidence interval for the R estimate.}

@@ -15,8 +15,6 @@
 }
 \details{This function is only used for simulation purposes. The output is a matrix of n columns (number of outbreaks)
 by m rows (maximum length of an outbreak).
-To avoid crashes, when the outbreak breaches a peak value, the repreoduction number is automatically set to 0.7 so
-that the epidemics dies out.
 
 When using rnbinom with "mean" and "size" moments, the variance is given by mean + mean^2/size (see ?rnbinom).
 One should determine the size accordingly to the R0 value to increase the dispersion.

@@ -83,6 +83,7 @@ est.R0.EG <-function#Estimate R from exponential growth rate
 	# Apply method of Wallinga / Lipsitch for discretized Laplace transform
 	
 	R = as.numeric(R.from.r(r,GT))
+  ##details<< CI is computed from the 1/M(-r) formula using bounds on r from the Poisson regression.
 	R.inf = as.numeric(R.from.r(confint[1],GT))
 	R.sup = as.numeric(R.from.r(confint[2],GT))
 	

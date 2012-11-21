@@ -2,26 +2,40 @@
 \alias{est.R0.ML}
 \title{Estimate the reproduction number by maximum likelihood}
 \description{Estimate the reproduction number by maximum likelihood}
-\usage{est.R0.ML(epid, GT, t = NULL, begin = NULL, end = NULL, date.first.obs = NULL, 
-    time.step = 1, range = c(0.01, 50), impute.values = FALSE, 
-    checked = FALSE, ...)}
+\usage{est.R0.ML(epid, GT, import = NULL, t = NULL, begin = NULL, end = NULL, 
+    date.first.obs = NULL, time.step = 1, range = c(0.01, 50), 
+    unknown.GT = FALSE, impute.values = FALSE, checked = FALSE, 
+    ...)}
 \arguments{
   \item{epid}{the epidemic curve}
   \item{GT}{generation time distribution}
+  \item{import}{Vector of imported cases.}
   \item{t}{Vector of dates at which incidence was calculated}
   \item{begin}{At what time estimation begins}
   \item{end}{Time at which to end computation}
   \item{date.first.obs}{Optional date of first observation, if t not specified}
   \item{time.step}{Optional. If date of first observation is specified, number of day between each incidence observation}
   \item{range}{Range in which the maximum must be looked for}
+  \item{unknown.GT}{When GT distribution is unknown, it is estimated jointly. See details.}
   \item{impute.values}{Boolean value. If TRUE, will impute unobserved cases at the beginning of the epidemic to correct for censored data}
   \item{checked}{Internal flag used to check whether integrity checks were ran or not.}
   \item{\dots}{parameters passed to inner functions}
 }
 \details{For internal use. Called by est.R0.
 
+White & Pagano (2009) detail two maximum likelihood methods for estimatig the reproduction ratio.
+The first (and used by default in this package) assumes that the serial interval distirbution is known, and subsequently
+the likelihood is only maximised depending on the value of R.
+The second method can be used if the serial interval distribution is unknown: in that case, the generation time is set to
+follow a Gamma distribution with two parameters (size, shape), and the optimization routine finds the values of R, size and shape
+that maximize the likelihood. However, the epidemic curve must be long enough to account for a whole generation. The authors showed
+that this is achieved when the cumulated amount of incident cases reaches 150. 
+When using this method, the flag \code{unknown.GT} must be set to \code{TRUE}. GT must still be provided with a R0.GT-class object, however its mean and sd will be recycled as starting value for the optimization routine.
+
 The principle of the methods described by White & all is to compute the expected number of 
-cases in the future, and optimise to get R using a Poisson distribution.}
+cases in the future, and optimise to get R using a Poisson distribution.
+
+CI is achieved by profiling the likelihood.}
 \value{A list with components:
 \item{R}{The estimate of the reproduction ratio.}
 \item{conf.int}{The 95\% confidence interval for the R estimate.}

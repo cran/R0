@@ -17,17 +17,27 @@ est.R0.ML <- function#Estimate the reproduction number by maximum likelihood
 
 (epid, ##<< the epidemic curve
   GT, ##<< generation time distribution
+  import=NULL, ##<< Vector of imported cases.
   t=NULL, ##<< Vector of dates at which incidence was calculated
   begin=NULL, ##<< At what time estimation begins
   end=NULL, ##<< Time at which to end computation
   date.first.obs=NULL, ##<< Optional date of first observation, if t not specified
   time.step=1, ##<< Optional. If date of first observation is specified, number of day between each incidence observation
   range=c(0.01,50), ##<< Range in which the maximum must be looked for
+  unknown.GT=FALSE, ##<< When GT distribution is unknown, it is estimated jointly. See details.
   impute.values=FALSE, ##<< Boolean value. If TRUE, will impute unobserved cases at the beginning of the epidemic to correct for censored data
   checked=FALSE, ##<< Internal flag used to check whether integrity checks were ran or not. 
   ... ##<< parameters passed to inner functions
 ) 
 
+##details<< White & Pagano (2009) detail two maximum likelihood methods for estimatig the reproduction ratio.
+## The first (and used by default in this package) assumes that the serial interval distirbution is known, and subsequently
+## the likelihood is only maximised depending on the value of R.
+## The second method can be used if the serial interval distribution is unknown: in that case, the generation time is set to
+## follow a Gamma distribution with two parameters (size, shape), and the optimization routine finds the values of R, size and shape
+## that maximize the likelihood. However, the epidemic curve must be long enough to account for a whole generation. The authors showed
+## that this is achieved when the cumulated amount of incident cases reaches 150. 
+## When using this method, the flag \code{unknown.GT} must be set to \code{TRUE}. GT must still be provided with a R0.GT-class object, however its mean and sd will be recycled as starting value for the optimization routine.
 
 # Code
 
@@ -43,6 +53,9 @@ est.R0.ML <- function#Estimate the reproduction number by maximum likelihood
   begin.nb = which(epid$t == begin)
   end.nb = which(epid$t == end)
   
+  if(!is.null(import) & length(import) != length(epid$incid)) stop("Import vector and incidence vector do not have the same length.")
+  if (is.null(import)) import <- rep(0, length(epid$incid))
+  
 #  if (impute.values == TRUE) {
 #    begin.nb = 1
 #    end.nb = length(epid$incid)
@@ -53,12 +66,18 @@ est.R0.ML <- function#Estimate the reproduction number by maximum likelihood
 	
 	#Truncate at end if necessary
 	epid = list(incid=epid$incid[begin.nb:end.nb],t=epid$t[begin.nb:end.nb])
-	
+  import <- import[begin.nb:end.nb]
+  
   #Make a likelihood that can be optimized
   ##details<< The principle of the methods described by White & all is to compute the expected number of 
   ## cases in the future, and optimise to get R using a Poisson distribution.
   log.R <- log(1) #initial value is taken at 1
-	res.R <-  optimize(fit.epid,log(range),GT=GT,epid=epid,maximum=TRUE)
+  if (unknown.GT==FALSE) {res.R <-  optimize(fit.epid,log(range),GT=GT,epid=epid,import=import,maximum=TRUE)}
+  else {
+    optimized.val <- optim(c(log.R, GT$mean, GT$sd), fit.epid.optim, epid=epid, import=import, control=list(fnscale=-1))$par
+    GT <- generation.time("gamma", c(optimized.val[2], optimized.val[3]))
+    res.R <- optimize(fit.epid,log(range),GT=GT,epid=epid,import=import,maximum=TRUE)
+  }
 
 	if ((exp(res.R$maximum) == range[1]) | (exp(res.R$maximum) == range[2])) { 
 		warning("Algorithm converged to boundary. Try increasing 'range'")
@@ -66,11 +85,12 @@ est.R0.ML <- function#Estimate the reproduction number by maximum likelihood
 	
 	# Should get the confidence interval by solving likelihood. 
 	# Use uniroot starting from current estimate.
-	R.max <-  uniroot(fit.epid,lower=res.R$maximum, upper = log(range[2]), offset=res.R$objective-qchisq(0.95,df=1),epid=epid,GT=GT)
-	R.min <-  uniroot(fit.epid,lower=log(range[1]), upper=res.R$maximum, offset=res.R$objective-qchisq(0.95,df=1),epid=epid,GT=GT)
-	
+	R.max <-  uniroot(fit.epid,lower=res.R$maximum, upper = log(range[2]), offset=res.R$objective-qchisq(0.95,df=1),epid=epid,GT=GT,import=import)
+	R.min <-  uniroot(fit.epid,lower=log(range[1]), upper=res.R$maximum, offset=res.R$objective-qchisq(0.95,df=1),epid=epid,GT=GT,import=import)
+	##details<< CI is achieved by profiling the likelihood.
+  
 	# Compute prediction
-	pred = fit.epid(res.R$maximum,epid,GT,pred=TRUE)
+	pred = fit.epid(res.R$maximum,epid,GT,import=import,pred=TRUE)
   
   #We check how prediction and observed data match to compute a deviance-measured R-squared value
   tmp<-glm(epid$incid~pred, family=poisson())

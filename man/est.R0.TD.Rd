@@ -22,7 +22,9 @@
   \item{checked}{Internal flag used to check whether integrity checks were ran or not.}
   \item{\dots}{parameters passed to inner functions}
 }
-\details{For internal use. Called by est.R0.}
+\details{For internal use. Called by est.R0.
+
+CI is computed by multinomial simulations at each time step with the expected value of R.}
 \value{A list with components:
 \item{R}{vector of R values.}
 \item{conf.int}{95\% confidence interval for estimates.}

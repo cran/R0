@@ -56,6 +56,13 @@ est.R0.TD <- function#Estimate the time dependent reproduction number
   #epid$incid <- epid$incid[begin.nb:end.nb]
   #epid$t <- epid$t[begin.nb:end.nb]
   
+  # Warning if length(GT) <= longest gap in epidemic curve
+  t <- diff(c(FALSE, epid$incid==0, FALSE), 1)
+  start <- which(t==1)
+  end <- which(t==-1)
+  longest <- max(end-start)
+  if (longest > length(GT$GT)) warning(paste("Gap in epidemic curve is longer than the generation interval. Consider using a different GT distribution (maybe with \"truncate=", longest, "\" (length of longest gap))."), sep="")
+  
   #Imported cases should be provided as a vector of the same length as incid.
   #If no imported cases is provided, import is set to 0.
   if (is.null(import)) {
@@ -184,6 +191,7 @@ est.R0.TD <- function#Estimate the time dependent reproduction number
   }
   
   # changed Tmax to end
+  ##details<< CI is computed by multinomial simulations at each time step with the expected value of R.
   conf.int = matrix(data=NA, nrow=end.nb, ncol=2)
   colnames(conf.int)=c("lower", "upper")
   

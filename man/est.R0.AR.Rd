@@ -14,12 +14,15 @@
 }
 \details{For internal use. Called by est.R0.
 
-In the simple SIR model, the relation between R0 and the Attack Rate is in the form R0 = -ln((1-AR)/S0) / (AR - (1-S0)).
+In the simple SIR model, the relation between R0 and the Attack Rate is in the form \eqn{R0 = -ln((1-AR)/S0) / (AR - (1-S0))}.
 
 If the population size is provided, the variance of R0 is estimated using the delta method. 
 The hypothesis are that of homogeneous mixing, no more transmission (epidemic ended), no change in transmission or interventions during the epidemic. This estimate may be correct in closed populations, and may be less valid in other cases.
 
-The correction for incomplete susceptibility is based on the SIR model equations.}
+The correction for incomplete susceptibility is based on the SIR model equations.
+
+CI is computed for the attack rate considering the population size (\eqn{CI(AR) = AR +/- 1.96*sqrt(AR*(1-AR)/n)}), 
+and so the CI for the reproduction number is computed with this extreme values.}
 \value{A list with components:
 \item{epid}{The vector of incidence, after being correctly formated by check.incid. Used only by plot.fit.}
 \item{R}{The estimate of the reproduction ratio.}

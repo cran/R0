@@ -1,6 +1,6 @@
 # Name   : sim.epid
 # Desc   : Simulate epidemic outbreaks of specified R0 and generation time distribution
-# Date   : 2012/11/04
+# Date   : 2012/04/11
 # Author : Boelle, Obadia
 ###############################################################################
 
@@ -25,8 +25,6 @@ sim.epid <- function#Epidemic outbreak simulation
 {
   ##details<< This function is only used for simulation purposes. The output is a matrix of n columns (number of outbreaks)
   ## by m rows (maximum length of an outbreak).
-  ## To avoid crashes, when the outbreak breaches a peak value, the repreoduction number is automatically set to 0.7 so
-  ## that the epidemics dies out.
   
   #Various content integrity checks
   if (class(GT) != "R0.GT") {

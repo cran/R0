@@ -12,7 +12,7 @@ est.R0.AR <- function#Estimate R0 from attack rate of an epidemic
 ### Estimate R0 from attack rate of an epidemic.
 ##details<< For internal use. Called by est.R0.
 
-##details<< In the simple SIR model, the relation between R0 and the Attack Rate is in the form R0 = -ln((1-AR)/S0) / (AR - (1-S0)).
+##details<< In the simple SIR model, the relation between R0 and the Attack Rate is in the form \eqn{R0 = -ln((1-AR)/S0) / (AR - (1-S0))}.
 ##note<< This is the implementation of the formula by Dietz (1993).
 ##references<<Dietz, K. "The Estimation of the Basic Reproduction Number for Infectious Diseases." Statistical Methods in Medical Research 2, no. 1 (March 1, 1993): 23-41.
 
@@ -84,6 +84,8 @@ est.R0.AR <- function#Estimate R0 from attack rate of an epidemic
   R0.from.AR = function(AR, S0) {-log((1-AR)/S0)/(AR - (1-S0))}
   
   R0 = R0.from.AR(AR,S0)
+  ##details<< CI is computed for the attack rate considering the population size (\eqn{CI(AR) = AR +/- 1.96*sqrt(AR*(1-AR)/n)}), 
+  ## and so the CI for the reproduction number is computed with this extreme values.
   CI95 <- c(R0.from.AR(AR-1.96*sqrt(AR *(1-AR)/pop.size),S0),R0.from.AR(AR+1.96*sqrt(AR *(1-AR)/pop.size),S0))
   # variance of R0 is estimated using Delta method.
   var.R0 <- ((-((-1 + AR + S0)/(-1 + AR)) + log((1 - AR)/S0))/(-1 + AR + S0)^2) * AR *(1-AR)/pop.size
