@@ -115,28 +115,31 @@ est.R0.TD <- function#Estimate the time dependent reproduction number
     p[1,1]<-1
 		multinom.simu[[1]][1,] = rmultinom(nsim, epid$incid[1]-n.t0, p[1:1,1])
 	}
-  epid.orig<-epid
   
-  # 
-  epid.all = epid$incid + import
-	#Loop on epidemic duration
+  #imported cases are added to autonomous so that they can be "infectors"infectors" after their arrival
+  epid.orig<-epid
+  epid$incid = epid$incid + import
+	
+  #Loop on epidemic duration
 	for (s in 2:Tmax) {
     
     multinom.simu[[s]] = matrix(0, Tmax, nsim)
     
 		#If autonomous cases were incident on day s, we have to find how previous cases may have contributed to them
-		if(epid$incid[s]>0) {
-      #weight # index case detected on day j 
+		if ((epid$incid[s]-import[s]>0)) {
+      #weights for index case detected on day s
 			weight.cases.for.s <-(epid$incid[1:s]-c(rep(0,s-1),1+import[s]))*GT.pad[s:1]
 			
       #normalization
 			weight.cases.for.s <- weight.cases.for.s / sum(weight.cases.for.s)
 			
-      #Likelihood of a infected at time j to have been caused by parent at time
-      #i in [1:t-1]
-      prob.cases.for.s <- weight.cases.for.s * (epid$incid[s])/(epid$incid[1:s]-c(rep(0,s-1),1))
+      #Likelihood of a infected at time s to have been caused by parent in [1:s]
+      #prob.cases.for.s[i] is the expected number of offspring on day s from one individual on day i
+      prob.cases.for.s <- weight.cases.for.s * (epid$incid[s]-import[s])/(epid$incid[1:s]-c(rep(0,s-1),1+import[s]))
 			prob.cases.for.s[epid$incid[1:(s-1)]==0] <- 0
 			
+      #Should not be required, but just in case
+      #only 1 icident case on day s: can't be its own infector
 			if(epid$incid[s] == 1) {
         prob.cases.for.s[s] <- 0
 			}
@@ -151,7 +154,7 @@ est.R0.TD <- function#Estimate the time dependent reproduction number
       #We generate a high number of simulations with the computed probabilities
       #to find out how many infection result from each time unit.
       #multinom.sim list is updated from previous value, so we don't have to sum all lists at the end
-      multinom.simu[[s]][1:s,] = multinom.simu[[s-1]][1:s,] + rmultinom(nsim,epid$incid[s],p[1:s,s])
+      multinom.simu[[s]][1:s,] = multinom.simu[[s-1]][1:s,] + rmultinom(nsim,epid$incid[s]-import[s],p[1:s,s])
 		}
     else {
       P[1:s,s]<-0
