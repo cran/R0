@@ -1,4 +1,4 @@
-12b86ca81043a465085639df98665d9f *DESCRIPTION
+9af5fc6c1f947e035d826865a09d15d5 *DESCRIPTION
 643a1327af5f9d4b3539ee8ec0649c21 *NAMESPACE
 6ff9f567c9fb57982b9f55a49a9a4072 *R/R.from.r.R
 c9c58a15e6edf0018f0953fd5497451e *R/censored.deviation.R
@@ -8,7 +8,7 @@ c54e8d45ab1b544d907cd1876fd9a362 *R/check.incid.R
 608871446a4effc34e0e6fc1194758bf *R/est.R0.EG.R
 4a94a608f4ef71f6f1e259ac42b58733 *R/est.R0.ML.R
 762929a6c1e1815aaafb718a9459bc38 *R/est.R0.SB.R
-87cb43a56ea698aa5cd5cc66185e7929 *R/est.R0.TD.R
+f82a31025f9ce342d0d5da4adf4e3493 *R/est.R0.TD.R
 06ac81cc103bca1557f5c722129d7f2f *R/estimate.R.R
 d07f6b85763f2c51f35965bf29caafa4 *R/fit.epid.R
 148d7657e13078b6d1ddefd1268a398b *R/generation.time.R
@@ -39,7 +39,7 @@ f3bb21ea9a265592572840d2ae98a500 *data/Germany.1918.rda
 93dcbca4896f0cc99d2662d4a2830ce9 *man/Germany.1918.Rd
 2da59e06612a221cfa559ac60402cf0f *man/H1N1.serial.interval.Rd
 c2bc8457c4923954fbdd017ba1e6160d *man/R.from.r.Rd
-1e7a711c8c0a451824772de15ece9394 *man/R0-package.Rd
+980057099610433048f5fb2657dec28d *man/R0-package.Rd
 e3045b84e0e2992fce412f2a8a660333 *man/censored.deviation.Rd
 71f129321d467635b8fc4ebbf3edaa2d *man/check.incid.Rd
 22293dca11a04b8d80b94b2a0509f848 *man/est.GT.Rd

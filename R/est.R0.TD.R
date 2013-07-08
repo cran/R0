@@ -140,7 +140,7 @@ est.R0.TD <- function#Estimate the time dependent reproduction number
 			
       #Should not be required, but just in case
       #only 1 icident case on day s: can't be its own infector
-			if(epid$incid[s] == 1) {
+			if(epid$incid[s]-import[s] == 1) {
         prob.cases.for.s[s] <- 0
 			}
       
