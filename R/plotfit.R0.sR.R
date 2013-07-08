@@ -40,17 +40,20 @@ plotfit.R0.sR <- function#Plot the fit of all requested models to epidemic data
   }
   
   if (exists("ML", where = x$estimates)) {
-    x11()
+    #x11()
+    dev.new()
     plotfit(x$estimates$ML, xscale=xscale, ...)
   }
   
   if (exists("TD", where = x$estimates)) {
-    x11()
+    #x11()
+    dev.new()
     plotfit(x$estimates$TD, xscale=xscale, ...)
   }
   
   if (exists("SB", where = x$estimates)) {
-    x11()
+    #x11()
+    dev.new()
     plotfit(x$estimates$SB, xscale=xscale, SB.dist = SB.dist, ...)
   }
   

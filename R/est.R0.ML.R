@@ -72,12 +72,11 @@ est.R0.ML <- function#Estimate the reproduction number by maximum likelihood
   ##details<< The principle of the methods described by White & all is to compute the expected number of 
   ## cases in the future, and optimise to get R using a Poisson distribution.
   log.R <- log(1) #initial value is taken at 1
-  if (unknown.GT==FALSE) {res.R <-  optimize(fit.epid,log(range),GT=GT,epid=epid,import=import,maximum=TRUE)}
-  else {
+  if (unknown.GT==TRUE) {
     optimized.val <- optim(c(log.R, GT$mean, GT$sd), fit.epid.optim, epid=epid, import=import, control=list(fnscale=-1))$par
     GT <- generation.time("gamma", c(optimized.val[2], optimized.val[3]))
-    res.R <- optimize(fit.epid,log(range),GT=GT,epid=epid,import=import,maximum=TRUE)
   }
+  res.R <- optimize(fit.epid,log(range),GT=GT,epid=epid,import=import,maximum=TRUE)
 
 	if ((exp(res.R$maximum) == range[1]) | (exp(res.R$maximum) == range[2])) { 
 		warning("Algorithm converged to boundary. Try increasing 'range'")

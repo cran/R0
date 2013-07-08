@@ -39,22 +39,26 @@ plot.R0.sR <- function#Plot the R0/Rt value along with confidence interval of al
   }
   
   if (exists("ML", where = x$estimates)) {
-    x11()
+    #x11()
+    dev.new()
     plot(x$estimates$ML, xscale=xscale, ...)
   }
   
   if (exists("AR", where = x$estimates)) {
-    x11()
+    #x11()
+    dev.new()
     plot(x$estimates$AR, xscale=xscale, ...)
   }
   
   if (exists("TD", where = x$estimates)) {
-    x11()
+    #x11()
+    dev.new()
   plot(x$estimates$TD, xscale=xscale, TD.split=TD.split, ...)
   }
   
   if (exists("SB", where = x$estimates)) {
-    x11()
+    #x11()
+    dev.new()
   plot(x$estimates$SB, xscale=xscale, ...)
   }
   

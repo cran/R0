@@ -42,4 +42,5 @@ est.GT(serial.interval=H1N1.serial.interval)
 # The same result can be achieved with two vectors of dates of onset.
 # Here we use the same data, but trick the function into thinking onset dates are all "0".
 data(H1N1.serial.interval)
-est.GT(infector.onset.dates=rep(0,length(H1N1.serial.interval)), infectee.onset.dates=H1N1.serial.interval)}
+est.GT(infector.onset.dates=rep(0,length(H1N1.serial.interval)), 
+       infectee.onset.dates=H1N1.serial.interval)}

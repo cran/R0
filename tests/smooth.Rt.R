@@ -28,7 +28,7 @@ TD$estimates$TD$Rt.quant
 TD.weekly <- smooth.Rt(TD$estimates$TD, 7)
 TD.weekly
 # Reproduction number estimate using  Time-Dependant  method.
-# 1.878424 1.580976 1.356918 1.131633 0.9615463 0.8118902 0.8045254 0.8395747 0.8542518 0.8258094 ...
+# 1.878424 1.580976 1.356918 1.131633 0.9615463 0.8118902 0.8045254 0.8395747 0.8542518 0.8258094..
 
 TD.weekly$Rt.quant
 #    Date      R.t. CI.lower. CI.upper.

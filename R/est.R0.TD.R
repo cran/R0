@@ -60,8 +60,10 @@ est.R0.TD <- function#Estimate the time dependent reproduction number
   t <- diff(c(FALSE, epid$incid==0, FALSE), 1)
   start <- which(t==1)
   end <- which(t==-1)
-  longest <- max(end-start)
-  if (longest > length(GT$GT)) warning(paste("Gap in epidemic curve is longer than the generation interval. Consider using a different GT distribution (maybe with \"truncate=", longest, "\" (length of longest gap))."), sep="")
+  if (length(start) > 0 & length(end) > 0) { 
+    longest <- max(end-start)
+    if (longest > length(GT$GT)) warning(paste("Gap in epidemic curve is longer than the generation interval. Consider using a different GT distribution (maybe with \"truncate=", longest, "\" (length of longest gap))."), sep="")
+  }
   
   #Imported cases should be provided as a vector of the same length as incid.
   #If no imported cases is provided, import is set to 0.

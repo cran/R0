@@ -35,8 +35,7 @@ These values are not representative of the epidemic outbreak behaviour.}
 
 
 
-\examples{\dontrun{
-#Loading package
+\examples{\dontrun{#Loading package
 library(R0)
 
 ## Data is taken from the paper by Nishiura for key transmission parameters of an institutional

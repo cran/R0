@@ -128,7 +128,8 @@ plotfitRSB <- function(x, xscale, SB.dist,...)#Internal plot method for SB estim
   
   #When plotting Bayesian, if SB.dist is enabled, plot some R distributions throughout the epidemic
   if (SB.dist == TRUE) {
-    x11()
+    #x11()
+    dev.new()
     split.screen(c(3,3))
     if (end.nb-begin.nb>8) {
       num.to.plot <- c(1, rep(NA, 8))

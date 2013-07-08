@@ -32,8 +32,7 @@
 
 
 
-\examples{\dontrun{
-#Loading package
+\examples{\dontrun{#Loading package
 library(R0)
 
 ## Data is taken from the paper by Nishiura for key transmission parameters of an institutional
@@ -51,6 +50,6 @@ plot(x=tmp[,"GT.Mean"], xlab="mean GT (days)", y=tmp[,"R"], ylim=c(1.2, 2.1), yl
 arrows(x0=as.numeric(tmp[,"GT.Mean"]), y0=as.numeric(tmp[,"CI[lower]"]), 
        y1=as.numeric(tmp[,"CI[upper]"]), angle=90, code=3, col="black", length=0.05)
 
-## Note : One could tweak this example to change sorting of values (per mean, or per standard deviation)
+## One could tweak this example to change sorting of values (per mean, or per standard deviation)
 ## eg: 'x=tmp[,c('GT.Mean')]' could become 'x=tmp[,c('GT.SD')]'}
 }

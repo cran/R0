@@ -19,8 +19,7 @@
 
 
 
-\examples{\dontrun{
-#Loading package
+\examples{\dontrun{#Loading package
 library(R0)
 
 ## Data is taken from the paper by Nishiura for key transmission parameters of an institutional
@@ -39,8 +38,8 @@ sen = sensitivity.analysis(sa.type="time", incid=Germany.1918, GT=mGT, begin=1:1
 # These cases often return Rsquared = 1 and are thus ignored. 
 
 
-## Return data.frame which can be plotted. Provides the best Rsquared measures for each time interval,
-## along with a coloured matrix representing R0 values
+## Return data.frame which can be plotted. Provides the best Rsquared measures for each 
+## time interval, along with a coloured matrix representing R0 values
 ## Return 2 plots, and also a list with max.Rsquared and best R0 values for each time period
 plot(sen, what=c("criterion","heatmap"))
 
