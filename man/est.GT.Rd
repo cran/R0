@@ -18,7 +18,7 @@ If only serial.interval is provided, each record is assumed to be the time elaps
 
 When request.plot is set to TRUE, a graphical output provides standardized histogram of observed data along with
 the best-fitting adjusted model.}
-\value{A R0.GT object that complies with generation time distribution requirements of the R0 package.}
+\value{A \code{R0.GT} object that complies with \code{\link{generation.time}} distribution requirements of the R0 package}
 
 \author{Pierre-Yves Boelle, Thomas Obadia}
 

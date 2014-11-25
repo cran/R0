@@ -78,7 +78,7 @@ sa.time=function#Sensitivity analysis of basic reproduction ratio to begin/end d
   s.a=matrix(NA, nrow=length(begin)*length(end), ncol=8)
   
   #Columns are named so that display is easy to read
-  colnames(s.a)=c("Time.period", "Begin.dates","End.dates","R", "Growth.rate", "Rsquared", "CI[lower]", "CI[upper]")
+  colnames(s.a)=c("Time.period", "Begin.dates","End.dates","R", "Growth.rate", "Rsquared", "CI.lower", "CI.upper")
   
   for(i in 1:length(begin)) {
     for(j in 1:length(end)) {

@@ -47,6 +47,6 @@ plot(sen, what=c("criterion","heatmap"))
 # [very big data.frame]
 # 
 # $best.fit
-#     Time.period Begin.dates  End.dates       R Growth.rate  Rsquared CI.lower. CI.upper.
+#     Time.period Begin.dates  End.dates       R Growth.rate  Rsquared CI.lower CI.upper
 # 122          15  1918-01-07 1918-01-22 1.64098   0.1478316 0.9752564  1.574953  1.710209}
 }

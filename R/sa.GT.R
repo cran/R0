@@ -53,7 +53,7 @@ time.step=1, ##<< Optional. If date of first observation is specified, number of
   s.a=matrix(NA, nrow=length(list.GT), ncol=6)
   
   #Columns are named so that display is easy to read
-  colnames(s.a)=c("GT.Type", "GT.Mean", "GT.SD", "R", "CI[lower]", "CI[upper]")
+  colnames(s.a)=c("GT.Type", "GT.Mean", "GT.SD", "R", "CI.lower", "CI.upper")
   
   for(i in 1:length(list.GT)) {
     #Simulation is ran according to the requested method, with each correct begin/end value

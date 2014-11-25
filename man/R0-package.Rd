@@ -8,8 +8,8 @@
 \tabular{ll}{Package: \tab R0\cr
 Type: \tab Package\cr
 Title: \tab Estimation of R0 and real-time reproduction number from epidemics\cr
-Version: \tab 1.2-3\cr
-Date: \tab 2013-07-08\cr
+Version: \tab 1.2-5\cr
+Date: \tab 2014-11-25\cr
 Author: \tab Pierre-Yves Boelle, Thomas Obadia\cr
 Maintainer: \tab Thomas Obadia <obadia@u707.jussieu.fr>\cr
 Depends: \tab R (>= 2.13.0), MASS\cr

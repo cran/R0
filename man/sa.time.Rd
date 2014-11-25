@@ -37,14 +37,14 @@ These values are not representative of the epidemic outbreak behaviour.}
 
 \examples{\dontrun{#Loading package
 library(R0)
-
+ 
 ## Data is taken from the paper by Nishiura for key transmission parameters of an institutional
 ## outbreak during 1918 influenza pandemic in Germany)
-
+ 
 data(Germany.1918)
 mGT<-generation.time("gamma", c(2.6,1))
 sen=sa.time(Germany.1918, mGT, begin=1:15, end=16:30, est.method="EG")
-
+ 
 # ...
 # Warning message:
 # If 'begin' and 'end' overlap, cases where begin >= end are skipped.
@@ -53,15 +53,15 @@ sen=sa.time(Germany.1918, mGT, begin=1:15, end=16:30, est.method="EG")
 ## wtih different pairs of begin and end dates in form of data frame is returned.
 ## If method is "EG", results will include growth rate and deviance R-squared measure
 ## Else, if "ML" method is used, growth rate and R-squared will be set as NA
-
+ 
 ## Interesting results include the variation of R0 given specific begin/end dates.
 ## Such results can be plot as a colored matrix and display Rsquared=f(time period)
 plot(sen, what=c("criterion","heatmap"))
 ## Returns complete data.frame of best R0 value for each time period 
 ## (allows for quick visualization)
 ## The "best.fit" is the time period over which the estimate is the more robust
-
+ 
 # $best.fit
-#    Time.period Begin.dates  End.dates       R Growth.rate  Rsquared CI.lower. CI.upper.
+#    Time.period Begin.dates  End.dates       R Growth.rate  Rsquared CI.lower CI.upper
 # 92          15  1970-01-08 1970-01-23 1.64098   0.1478316 0.9752564  1.574953  1.710209}
 }
