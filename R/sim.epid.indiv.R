@@ -1,6 +1,6 @@
 # Name   : sim.epid.indiv
 # Desc   : Individual-based model used to simulate epidemic 
-# Date   : 2012/10/20
+# Date   : 2012/10/20 (last edit 2015/05/21)
 # Author : Boelle, Obadia
 ###############################################################################
 
@@ -52,10 +52,10 @@ sim.epid.indiv <- function#Influenza-like illness simulation (individual-based m
     epid[1:Lmax,"dinf"] <- rgamma(Lmax,shape=1/0.9**2, scale=0.9**2)
     epid[1:Lmax,"dlat"] <- rgamma(Lmax,shape=1.7**2/0.3**2, scale=0.3**2/1.7)
     
-    #colonne runif = moment de dinf_parent où le descendant a été infecté
+    #runif column = Time of infection of the offspring during dinf_parent
     epid[1:Lmax,"runif"] <- runif(Lmax)
     
-    # mettre les descendants
+    # add offspring
     if (family=="poisson") {
       epid[1:Lmax,"nsec"] = rpois(Lmax, lambda=epid[1:Lmax,"dinf"]*beta)
     }
@@ -69,10 +69,10 @@ sim.epid.indiv <- function#Influenza-like illness simulation (individual-based m
     
     while (idx.in.epid < idx.max) {
       
-      #on ignore les infecteurs ou tinf >= Tmax
+      #ignore infectors where tinf > Tmax
       if (epid[idx.in.epid,"tinf"] < Tmax) {
         
-        #Lecture du nb de descendants
+        #nb of offspring
         nsec = epid[idx.in.epid,"nsec"]
         if (nsec >0) {
           
@@ -81,7 +81,7 @@ sim.epid.indiv <- function#Influenza-like illness simulation (individual-based m
             epid[idx.in.epid,"dlat"] + 
             epid[idx.max:(idx.max+nsec-1),"runif"]*epid[idx.in.epid,"dinf"]
           
-          #Descendants du prochain infecteur = ceux après les descendants de idx.in.epid + nsec
+          #offpsring of next infector: those after the offspring of idx.in.epid + nsec
           idx.max = idx.max + nsec
         }
       }
