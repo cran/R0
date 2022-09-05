@@ -29,7 +29,7 @@ censored.deviation = function#Impute censored cases to rebuild longer epidemic v
   ## value returned by SCE
   
   #Various content integrity checks
-  if (class(GT) != "R0.GT") {
+  if (!inherits(GT, "R0.GT")) {
     stop("GT object must be of class R0.GT.")
   }
   GT <- GT$GT
@@ -69,5 +69,6 @@ censored.deviation = function#Impute censored cases to rebuild longer epidemic v
   #cat(N.avt.0,"\n")
   return(val)
   
-  ### The deviation between sum((E(Nt)-Nt)^2)
+  ##value<<
+  ## The deviation between sum((E(Nt)-Nt)^2)
 }

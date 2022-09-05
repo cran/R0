@@ -2,10 +2,10 @@ Package: R0
 Type: Package
 Title: Estimation of R0 and Real-Time Reproduction Number from
         Epidemics
-Version: 1.2-6
-Date: 2015-05-21
+Version: 1.2-10
+Date: 2022-08-29
 Author: Pierre-Yves Boelle, Thomas Obadia
-Maintainer: Thomas Obadia <thomas.obadia@iplesp.upmc.fr>
+Maintainer: Thomas Obadia <thomas.obadia@pasteur.fr>
 Depends: R (>= 2.13.0), MASS
 Description: Estimation of reproduction numbers for disease outbreak, based on
     incidence data. The R0 package implements several documented methods. It is
@@ -21,7 +21,7 @@ Description: Estimation of reproduction numbers for disease outbreak, based on
     varying Generation Time distribution or time window on estimates.
 License: GPL (>= 2)
 LazyLoad: yes
-Packaged: 2015-05-21 15:45:29 UTC; thomas
 NeedsCompilation: no
+Packaged: 2022-09-05 12:49:46 UTC; tobadia
 Repository: CRAN
-Date/Publication: 2015-05-21 19:34:12
+Date/Publication: 2022-09-05 15:10:07 UTC

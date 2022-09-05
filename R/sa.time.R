@@ -35,7 +35,7 @@ sa.time=function#Sensitivity analysis of basic reproduction ratio to begin/end d
   #Warning note and integrity check
   warning("If 'begin' and 'end' overlap, cases where begin >= end are skipped.\nThese cases often return Rsquared = 1 and are thus ignored.", call. = FALSE)
     if (!is.null(res)) {
-      if (class(res) != "R0.R") {
+      if (!inherits(res, "R0.R")) {
         stop("Currently, sensitivity analysis from a result object only supports 'R0.R' class objects. Try using res$estimates$EG or res$estimates$ML if they are defined.")
       }
       else if ((res$method %in% c("Exponential Growth","Maximum Likelihood")) == FALSE) {
@@ -146,10 +146,11 @@ sa.time=function#Sensitivity analysis of basic reproduction ratio to begin/end d
 
   return(structure(list(epid=tmp.epid, df=df, df.clean=df.clean, mat.sen=mat.sen, begin=begin, end=end), class="R0.S"))
   
-  ### A list with components as a data frame:
-  ### \item{df}{data.frame object with all results from sensitivity analysis.}
-  ### \item{df.clean}{the same object, with NA rows removed. Used only for easy export of results.}
-  ### \item{mat.sen}{Matrix with values of R0 given begin (rows) and end (columns) dates.}
-  ### \item{begin}{A range of begin dates in epidemic.}
-  ### \item{end}{A range of end dates in epidemic.}
+  ##value<<
+  ## A list with components as a data frame:
+  ## \item{df}{data.frame object with all results from sensitivity analysis.}
+  ## \item{df.clean}{the same object, with NA rows removed. Used only for easy export of results.}
+  ## \item{mat.sen}{Matrix with values of R0 given begin (rows) and end (columns) dates.}
+  ## \item{begin}{A range of begin dates in epidemic.}
+  ## \item{end}{A range of end dates in epidemic.}
 }

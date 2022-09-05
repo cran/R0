@@ -23,7 +23,7 @@ plot.R0.S <- function#Plot objects from sensitivity.analysis
   
 {
 	#Make sure x is of the right class
-	if (class(x)!="R0.S") {
+	if (!inherits(x, "R0.S")) {
     stop("'x' must be of class 'R0.S'")
 	}
   
@@ -74,7 +74,7 @@ plot.R0.S <- function#Plot objects from sensitivity.analysis
     #x11()
     dev.new()
     
-    plot(x=as.numeric(levels(fact))[skip:length(as.numeric(levels(fact)))], y=max.Rsquared$Rsquared[skip:length(max.Rsquared$Rsquared)], type="o", xlab="Time Period", ylab="Maximum Rsquared", main="Goodness of fit (R^2) of the model with time period")
+    plot(x=as.numeric(levels(fact))[skip:length(as.numeric(levels(fact)))], y=max.Rsquared$Rsquared[skip:length(max.Rsquared$Rsquared)], type="o", xlab="Time Period", ylab="Maximum Rsquared", main="Goodness of fit (R^2) of the model with time period", ...)
   
     #Highlight highest interesting value
     points(x=best.fit$Time.period, y=best.fit$Rsquared, pch=21, col="red", bg="red")
@@ -84,7 +84,9 @@ plot.R0.S <- function#Plot objects from sensitivity.analysis
   
   #Return the max.Rsquared data, as extracted from x$df.clean
   return(list(max.Rsquared=max.Rsquared, best.R0.values=x$df.clean[opt.df,4], best.fit=best.fit))
-  ### A data frame with best R0 measure for each possible time period, along with corresponding begin/end dates
-  ### \item{$max.Rsquared}{Best R0 measure for each time period, as measured by their Rsquared value.}
+  
+	##value<<
+	## A data frame with best R0 measure for each possible time period, along with corresponding begin/end dates
+  ## \item{$max.Rsquared}{Best R0 measure for each time period, as measured by their Rsquared value.}
   
 }
